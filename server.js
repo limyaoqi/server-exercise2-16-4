@@ -50,7 +50,7 @@ app.get("/parks/:id", (req, res) => {
   if (selectedPark) {
     res.json(selectedPark);
   } else {
-    res.status(404).json("parks not found");
+    res.status(404).json("park not found");
   }
 });
 app.get("/visitors", (req, res) => {
@@ -76,7 +76,7 @@ app.get("/visitors/:id", (req, res) => {
     };
     res.json(result);
   } else {
-    res.status(404).json("visitors not found");
+    res.status(404).json("visitor not found");
   }
 });
 app.get("/reservations", (req, res) => {
@@ -91,7 +91,7 @@ app.get("/reservations/:id", (req, res) => {
   if (selectedR) {
     res.json(selectedR);
   } else {
-    res.status(404).json("reservations not found");
+    res.status(404).json("reservation not found");
   }
 });
 
