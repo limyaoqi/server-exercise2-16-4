@@ -15,7 +15,12 @@ let parks = [
 ];
 
 let visitors = [
-  { id: 1, name: "John Doe", pastReservations: [1,2], upcomingReservations: [2] },
+  {
+    id: 1,
+    name: "John Doe",
+    pastReservations: [1, 2],
+    upcomingReservations: [2],
+  },
   { id: 2, name: "Jane Smith", pastReservations: [], upcomingReservations: [] },
 ];
 
