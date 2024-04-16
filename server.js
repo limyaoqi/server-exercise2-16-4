@@ -15,7 +15,7 @@ let parks = [
 ];
 
 let visitors = [
-  { id: 1, name: "John Doe", pastReservations: [1], upcomingReservations: [2] },
+  { id: 1, name: "John Doe", pastReservations: [1,2], upcomingReservations: [2] },
   { id: 2, name: "Jane Smith", pastReservations: [], upcomingReservations: [] },
 ];
 
@@ -63,16 +63,28 @@ app.get("/visitors", (req, res) => {
 app.get("/visitors/:id", (req, res) => {
   const selectedVisitor = visitors.find((v) => v.id == req.params.id);
   if (selectedVisitor) {
-    const pReservations = reservations.find(
-      (r) => r.id == selectedVisitor.pastReservations
-    );
-    const uReservations = reservations.find(
-      (r) => r.id == selectedVisitor.upcomingReservations
-    );
+    let pReservations = [];
+    let uReservations = [];
+    for (let i = 0; i < selectedVisitor.pastReservations.length; i++) {
+      const p = reservations.find(
+        (r) => r.id == selectedVisitor.pastReservations[i]
+      );
+      if (p) {
+        pReservations.push(p);
+      }
+    }
+    for (let i = 0; i < selectedVisitor.upcomingReservations.length; i++) {
+      const u = reservations.find(
+        (r) => r.id == selectedVisitor.upcomingReservations[i]
+      );
+      if (u) {
+        uReservations.push(u);
+      }
+    }
     const result = {
       ...selectedVisitor,
-      pastReservations: pReservations ? [pReservations] :[] ,
-      upcomingReservations: uReservations ? [uReservations] :[] ,
+      pastReservations: pReservations,
+      upcomingReservations: uReservations,
     };
     res.json(result);
   } else {
